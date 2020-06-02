@@ -17,30 +17,33 @@ const FilterSection = ({
   removeFilter,
   selectedFilters,
 }) => {
-  const handleChange = (event) => {
-    const { checked, value } = event.target;
+  const handleChange = (event, value) => {
+    const { checked } = event.target;
     if (checked) {
       addFilter({ filterType: title, value });
     } else {
       removeFilter({ filterType: title, value });
     }
   };
+  const isChecked = (list, { label: labelToFind }) => {
+    return list.find(({ label }) => label === labelToFind);
+  };
   return (
     <FilterSectionContainer>
       <FilterSectionTitle>{title}</FilterSectionTitle>
       <FilterSectionList>
         {list.map((item) => (
-          <FilterSectionListItem key={item}>
+          <FilterSectionListItem key={item.label}>
             <label>
               <input
                 type="checkbox"
                 value={item}
-                checked={selectedFilters[title].indexOf(item) !== -1}
+                checked={isChecked(selectedFilters[title],item)}
                 onChange={(e) => {
-                  handleChange(e);
+                  handleChange(e, item);
                 }}
               />
-              {item}
+              {item.label}
             </label>
           </FilterSectionListItem>
         ))}

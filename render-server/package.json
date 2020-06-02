@@ -47,6 +47,7 @@
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.2.0",
     "redux": "3.7.2",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "2.2.0",
     "reselect": "latest",
     "serialize-javascript": "1.4.0",

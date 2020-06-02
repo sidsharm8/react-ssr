@@ -1,16 +1,19 @@
 import React from "react";
 import {renderRoutes } from "react-router-config";
 
-//import "./App.css";
+import fetchCurrentUser from "./redux/user/user.actions";
 
 
 const App = ({ route: { routes } }) => {
   return (
     <div className="App">
-    Hiiii this is app header
        {renderRoutes(routes)}
     </div>
   );
 }
 
-export default { component: App };
+const loadData = ({ dispatch }) => {
+  return dispatch(fetchCurrentUser());
+}
+
+export default { component: App, loadData };

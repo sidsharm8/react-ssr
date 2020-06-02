@@ -20,9 +20,9 @@ const SelectedFilters = ({ filters, removeFilter }) => {
         {filters &&
           filterTypes.map((filterType) =>
             filters[filterType].map((filter) => (
-              <SelectedFilterLabel key={filter}>
-                {filter}{" "}
-                <RemoveFilter                 
+              <SelectedFilterLabel key={filter.label}>
+                {filter.label}{" "}
+                <RemoveFilter
                   onClick={() => {
                     removeFilter({ filterType, value: filter });
                   }}

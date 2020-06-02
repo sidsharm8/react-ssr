@@ -1,14 +1,21 @@
 const INITIAL_STATE = {
   list: [],
-  nextPage: ""
+  nextPage: 1,
+  loading: false
 };
 
 const charactersReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case "FETCH_CHARACTERS_START":
+    return {
+      ...state,
+      loading: true
+    };
     case "SET_CHARACTERS":
       return {
         ...state,
-        list: action.payload
+        list: action.payload,
+        loading: false
       };
     case "SET_NEXT_PAGE":
       return {

@@ -2,20 +2,24 @@ const setCharacters = (characters) => ({
   type : "SET_CHARACTERS",
   payload: characters
 });
-const setNextPage = (nextPage) => ({
+
+const fetchCharactersStart = () => ({
+  type : "FETCH_CHARACTERS_START",
+});
+
+export const setNextPage = (nextPage) => ({
   type : "SET_NEXT_PAGE",
   payload: nextPage
 });
 
-
-const API_URL = "https://rickandmortyapi.com/api/character/";
-const nonOtherSpecies = ["Human", "Mytholog"];
-const nonOtherOrigins = ["Uknown", "Post-Apocalyptic Earth", "Nuptia 4"];
-
 const fetchCharacters = (characterList = []) => async (dispatch, getState, api) => {
-  const res = await api(API_URL);
-  dispatch(setCharacters(res.data.results || []));
-  dispatch(setNextPage(res.data.info.next || ""));
+	const { characters : { nextPage } } = getState();
+	if(nextPage) {      
+      const { selectedFilters, searchText, sortType } = getState();
+		  const res = await api.post(`/character?page=${nextPage}`, { selectedFilters, searchText, sortType });
+		  dispatch(setCharacters(res.data.results || []));
+	}
+
 }
 
 export default fetchCharacters;
