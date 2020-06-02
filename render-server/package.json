@@ -50,7 +50,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "2.2.0",
     "reselect": "latest",
-    "serialize-javascript": "1.4.0",
+    "serialize-javascript": "2.1.1",
     "style-loader": "^1.2.1",
     "styled-components": "^5.1.1",
     "sugarss": "^2.0.0",
